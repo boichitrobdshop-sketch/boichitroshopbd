@@ -1,15 +1,14 @@
 <!DOCTYPE html>
-<html lang="en" class="scroll-smooth" style="">
+<html lang="en" class="scroll-smooth">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <title>Boichitro Shop BD - Seven Oceans Emergency Ration</title>
     
-    <!-- Tab er pashe choto logo dekhanor jonno nicher line ti add kora hoyeche -->
     <link rel="icon" type="image/png" href="favicon.png" sizes="32x32">
-    
     <link href="https://fonts.googleapis.com/css2?family=Hanken+Grotesk:wght@400;500;600;700;800&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@500&family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=block" rel="stylesheet">
     <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+    
     <script id="tailwind-config">
         try {
             tailwind.config = {
@@ -65,212 +64,231 @@
                             "tertiary-container": "#3e4041",
                             "primary-fixed-dim": "#b1c5ff"
                         },
-                        "borderRadius": {
-                            "DEFAULT": "0.25rem",
-                            "lg": "0.5rem",
-                            "xl": "0.75rem",
-                            "full": "9999px"
-                        },
-                        "spacing": {
-                            "margin-mobile": "16px",
-                            "xs": "4px",
-                            "gutter": "24px",
-                            "max-width": "1280px",
-                            "sm": "12px",
-                            "md": "24px",
-                            "lg": "48px",
-                            "xl": "80px",
-                            "margin-desktop": "auto",
-                            "base": "8px"
-                        },
                         "fontFamily": {
-                            "display-lg": ["Hanken Grotesk"],
-                            "label-caps": ["JetBrains Mono"],
-                            "headline-sm": ["Hanken Grotesk"],
-                            "body-sm": ["Inter"],
-                            "body-lg": ["Inter"],
-                            "headline-md": ["Hanken Grotesk"],
-                            "body-md": ["Inter"]
+                            "display-lg": ["Hanken Grotesk", "sans-serif"],
+                            "label-caps": ["JetBrains Mono", "monospace"],
+                            "body-main": ["Inter", "sans-serif"]
                         }
                     }
                 }
             }
         } catch (_e) {}
     </script>
-    <meta charset="utf-8">
+    <style>
+        /* Base styles for hiding scrollbar but allowing scroll */
+        .no-scrollbar::-webkit-scrollbar { display: none; }
+        .no-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
+    </style>
 </head>
-<body class="bg-background text-on-surface font-body-md selection:bg-primary-fixed-dim selection:text-on-primary-fixed overflow-x-hidden">
+<body class="bg-background text-on-surface font-body-main selection:bg-primary-fixed-dim selection:text-on-primary-fixed overflow-x-hidden">
 
     <!-- Sticky Navigation -->
     <nav class="bg-surface/90 backdrop-blur-md sticky top-0 z-50 shadow-sm border-b border-outline-variant/30">
-        <div class="flex justify-between items-center w-full px-md md:px-lg max-w-max-width mx-auto py-base min-h-[64px]">
+        <div class="flex justify-between items-center w-full px-4 md:px-8 max-w-7xl mx-auto py-3 min-h-[64px] relative">
             
-            <a href="#home" class="flex items-center gap-2 group transition-transform hover:scale-105 active:scale-95 cursor-pointer">
-                <span class="font-display-lg font-extrabold text-2xl text-primary tracking-tight">Boichitro Shop BD</span>
+            <a href="#home" class="flex items-center gap-2 group transition-transform hover:scale-105 active:scale-95 cursor-pointer z-10">
+                <span class="font-display-lg font-extrabold text-xl md:text-2xl text-primary tracking-tight">Boichitro Shop BD</span>
             </a>
 
-            <div class="hidden md:flex items-center gap-lg" id="nav-menu">
-                <a href="#home" class="nav-link text-primary font-bold border-b-2 border-primary pb-1 font-body-md text-body-md transition-colors">Home</a>
-                <a href="#product" class="nav-link text-on-surface-variant hover:text-primary transition-colors font-body-md text-body-md">Product</a>
-                <a href="#why" class="nav-link text-on-surface-variant hover:text-primary transition-colors font-body-md text-body-md">Why Seven Oceans</a>
-                <a href="#faq" class="nav-link text-on-surface-variant hover:text-primary transition-colors font-body-md text-body-md">FAQ</a>
-                <a href="#order" class="nav-link text-on-surface-variant hover:text-primary transition-colors font-body-md text-body-md">Contact</a>
+            <!-- Desktop Menu -->
+            <div class="hidden md:flex items-center gap-8" id="nav-menu">
+                <a href="#home" class="nav-link text-primary font-bold border-b-2 border-primary pb-1 transition-colors">Home</a>
+                <a href="#product" class="nav-link text-on-surface-variant hover:text-primary transition-colors">Product</a>
+                <a href="#why" class="nav-link text-on-surface-variant hover:text-primary transition-colors">Why Seven Oceans</a>
+                <a href="#faq" class="nav-link text-on-surface-variant hover:text-primary transition-colors">FAQ</a>
+                <a href="#order" class="nav-link text-on-surface-variant hover:text-primary transition-colors">Contact</a>
             </div>
-            <a href="#order" class="bg-primary text-on-primary px-lg py-sm rounded-xl font-bold hover:bg-primary-container transition-all active:scale-95 duration-200 min-h-[44px] flex items-center justify-center">Order Now</a>
+            
+            <div class="flex items-center gap-3 z-10">
+                <a href="#order" class="hidden sm:flex bg-primary text-on-primary px-6 py-2 rounded-xl font-bold hover:bg-primary-container hover:text-white transition-all active:scale-95 duration-200 items-center justify-center text-sm">Order Now</a>
+                
+                <!-- Mobile Menu Button -->
+                <button id="mobile-menu-btn" class="md:hidden flex items-center justify-center p-2 rounded-lg bg-surface-container hover:bg-surface-variant transition-colors active:scale-95 text-primary">
+                    <span class="material-symbols-outlined" id="menu-icon">menu</span>
+                </button>
+            </div>
+        </div>
+
+        <!-- Mobile Menu Dropdown -->
+        <div id="mobile-menu" class="absolute top-full left-0 w-full bg-surface border-b border-outline-variant/30 shadow-lg transform -translate-y-2 opacity-0 pointer-events-none transition-all duration-300 flex flex-col md:hidden z-40">
+            <div class="flex flex-col p-4 space-y-2">
+                <a href="#home" class="mobile-nav-link text-primary font-bold bg-primary/5 p-3 rounded-lg transition-colors">Home</a>
+                <a href="#product" class="mobile-nav-link text-on-surface-variant hover:bg-surface-container p-3 rounded-lg transition-colors">Product</a>
+                <a href="#why" class="mobile-nav-link text-on-surface-variant hover:bg-surface-container p-3 rounded-lg transition-colors">Why Seven Oceans</a>
+                <a href="#faq" class="mobile-nav-link text-on-surface-variant hover:bg-surface-container p-3 rounded-lg transition-colors">FAQ</a>
+                <a href="#order" class="mobile-nav-link text-on-surface-variant hover:bg-surface-container p-3 rounded-lg transition-colors">Contact</a>
+                <a href="#order" class="bg-primary text-on-primary p-3 rounded-lg font-bold text-center mt-2 active:scale-95 transition-transform">Order Now</a>
+            </div>
         </div>
     </nav>
 
     <!-- Hero Section -->
-    <section id="home" class="relative overflow-hidden pt-lg pb-lg md:pb-xl transition-all duration-1000 opacity-100 scroll-mt-24">
-        <div class="max-w-max-width mx-auto px-md md:px-lg grid md:grid-cols-2 gap-lg md:gap-xl items-center">
-            <div class="space-y-md animate-fade-in text-center md:text-left">
-                <div class="inline-flex gap-sm flex-wrap justify-center md:justify-start">
-                    <span class="bg-secondary-container text-on-secondary-container px-sm py-xs rounded-full font-label-caps text-label-caps uppercase tracking-wider">Top Rated</span>
-                    <span class="bg-surface-container-high text-primary px-sm py-xs rounded-full font-label-caps text-label-caps uppercase tracking-wider">Limited Stock</span>
+    <section id="home" class="relative overflow-hidden pt-8 pb-12 md:pt-16 md:pb-24 transition-all duration-1000 opacity-100 scroll-mt-24">
+        <div class="max-w-7xl mx-auto px-4 md:px-8 grid md:grid-cols-2 gap-8 md:gap-16 items-center">
+            <div class="space-y-6 animate-fade-in text-center md:text-left flex flex-col items-center md:items-start">
+                <div class="inline-flex gap-2 flex-wrap justify-center md:justify-start">
+                    <span class="bg-secondary-container text-on-secondary-container px-3 py-1 rounded-full font-label-caps text-xs uppercase tracking-wider font-bold">Top Rated</span>
+                    <span class="bg-surface-container-high text-primary px-3 py-1 rounded-full font-label-caps text-xs uppercase tracking-wider font-bold">Limited Stock</span>
                 </div>
-                <h1 class="font-display-lg text-display-lg leading-tight text-primary"><strong>Seven Oceans Emergency Ration</strong><br>
-                    Ready-to-Eat Emergency Food for Every Situation</h1>
-                <p class="font-body-lg text-body-lg text-on-surface-variant max-w-lg mx-auto md:mx-0">Premium Ready-to-Eat Emergency Food trusted worldwide for disaster preparedness, travel, camping and marine survival.</p>
-                <div class="flex flex-wrap gap-sm pt-sm justify-center md:justify-start">
-                    <div class="flex items-center gap-xs bg-surface-container px-sm py-xs rounded-lg">
-                        <span class="material-symbols-outlined text-primary">restaurant</span>
-                        <span class="text-body-sm font-medium">Ready to Eat</span>
+                
+                <!-- Fixed Typography sizes for mobile vs desktop -->
+                <h1 class="font-display-lg text-3xl sm:text-4xl lg:text-5xl leading-tight text-primary font-extrabold tracking-tight">
+                    Seven Oceans Emergency Ration<br>
+                    <span class="text-2xl sm:text-3xl lg:text-4xl font-semibold opacity-90 mt-2 block">Ready-to-Eat Food for Every Situation</span>
+                </h1>
+                
+                <p class="text-base sm:text-lg text-on-surface-variant max-w-lg mx-auto md:mx-0">Premium Ready-to-Eat Emergency Food trusted worldwide for disaster preparedness, travel, camping and marine survival.</p>
+                
+                <div class="flex flex-wrap gap-2 pt-2 justify-center md:justify-start w-full">
+                    <div class="flex items-center gap-1.5 bg-surface-container px-3 py-2 rounded-lg">
+                        <span class="material-symbols-outlined text-primary text-sm">restaurant</span>
+                        <span class="text-sm font-medium">Ready to Eat</span>
                     </div>
-                    <div class="flex items-center gap-xs bg-surface-container px-sm py-xs rounded-lg">
-                        <span class="material-symbols-outlined text-primary">verified</span>
-                        <span class="text-body-sm font-medium">Nutritious</span>
+                    <div class="flex items-center gap-1.5 bg-surface-container px-3 py-2 rounded-lg">
+                        <span class="material-symbols-outlined text-primary text-sm">verified</span>
+                        <span class="text-sm font-medium">Nutritious</span>
                     </div>
-                    <div class="flex items-center gap-xs bg-surface-container px-sm py-xs rounded-lg">
-                        <span class="material-symbols-outlined text-primary">history</span>
-                        <span class="text-body-sm font-medium">5-Year Shelf Life</span>
+                    <div class="flex items-center gap-1.5 bg-surface-container px-3 py-2 rounded-lg">
+                        <span class="material-symbols-outlined text-primary text-sm">history</span>
+                        <span class="text-sm font-medium">5-Year Life</span>
                     </div>
                 </div>
-                <div class="flex flex-col sm:flex-row gap-md pt-lg justify-center md:justify-start">
-                    <a href="#order" class="bg-primary text-on-primary px-xl py-md rounded-xl font-bold text-center shadow-lg hover:shadow-primary/20 transition-all min-h-[48px] flex items-center justify-center">Order Now</a>
-                    <a href="https://wa.me/8801818028094" target="_blank" class="bg-secondary text-on-secondary px-xl py-md rounded-xl font-bold text-center flex items-center justify-center gap-sm shadow-lg hover:bg-secondary/90 transition-all min-h-[48px]">
+                
+                <div class="flex flex-col sm:flex-row gap-4 pt-4 w-full justify-center md:justify-start">
+                    <a href="#order" class="w-full sm:w-auto bg-primary text-on-primary px-8 py-3.5 rounded-xl font-bold text-center shadow-lg hover:shadow-primary/20 transition-all min-h-[48px] flex items-center justify-center text-lg active:scale-95">Order Now</a>
+                    <a href="https://wa.me/8801818028094" target="_blank" class="w-full sm:w-auto bg-secondary text-on-secondary px-8 py-3.5 rounded-xl font-bold text-center flex items-center justify-center gap-2 shadow-lg hover:bg-secondary/90 transition-all min-h-[48px] text-lg active:scale-95">
                         <span class="material-symbols-outlined">chat</span> WhatsApp Order
                     </a>
                 </div>
             </div>
-            <div class="relative group mt-lg md:mt-0 px-md md:px-0">
-                <div class="absolute -inset-4 bg-primary/5 rounded-full blur-3xl animate-pulse"></div>
-                <img class="relative w-full h-auto object-contain rounded-xl drop-shadow-2xl transition-transform duration-500 group-hover:scale-105 mx-auto max-w-[280px] sm:max-w-full" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCwtz-AV7auKglvpEjdQEbq4c8FZCeWCroWQuL3RPsyyIyHSEJw9PocPswh7PJwoD5Cf1lg7Bq48C2qH_ycHNZOg9gGCf8ppgYCu26P7jMNJ0t0OZ3-_ob6lhvt0ZhwXCOdXTElZtC0OWgSG2fTVdqCPbDBoY8cEImoXuPJqnI5D3Lgi_Fr5dmK9_sxn0cdupyq8qQrDwdXlUMkopHZciDk7dD7DiIUhYSN2wjA7caqx7YbXJ3W-hfvMV4UuzjmnE6gq-l2R0CzMeENWQg" alt="Seven Oceans Emergency Ration Packaging">
+            
+            <div class="relative group mt-8 md:mt-0 px-4 md:px-0">
+                <div class="absolute -inset-4 bg-primary/10 rounded-full blur-3xl animate-pulse"></div>
+                <img class="relative w-full h-auto object-contain rounded-xl drop-shadow-2xl transition-transform duration-500 md:group-hover:scale-105 mx-auto max-w-[280px] sm:max-w-md lg:max-w-full" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCwtz-AV7auKglvpEjdQEbq4c8FZCeWCroWQuL3RPsyyIyHSEJw9PocPswh7PJwoD5Cf1lg7Bq48C2qH_ycHNZOg9gGCf8ppgYCu26P7jMNJ0t0OZ3-_ob6lhvt0ZhwXCOdXTElZtC0OWgSG2fTVdqCPbDBoY8cEImoXuPJqnI5D3Lgi_Fr5dmK9_sxn0cdupyq8qQrDwdXlUMkopHZciDk7dD7DiIUhYSN2wjA7caqx7YbXJ3W-hfvMV4UuzjmnE6gq-l2R0CzMeENWQg" alt="Seven Oceans Emergency Ration Packaging">
             </div>
         </div>
     </section>
 
     <!-- Why Choose Section -->
-    <section class="bg-surface-container-low py-lg md:py-xl transition-all duration-1000 opacity-100 scroll-mt-24" id="why">
-        <div class="max-w-max-width mx-auto px-md md:px-lg">
-            <div class="text-center mb-lg md:mb-xl">
-                <h2 class="font-display-lg text-headline-md text-primary mb-sm">Why Choose Seven Oceans?</h2>
-                <p class="text-on-surface-variant max-w-2xl mx-auto">Engineered for extreme conditions, our emergency rations provide reliable nutrition when you need it most.</p>
+    <section class="bg-surface-container-low py-12 md:py-20 transition-all duration-1000 opacity-100 scroll-mt-24" id="why">
+        <div class="max-w-7xl mx-auto px-4 md:px-8">
+            <div class="text-center mb-10 md:mb-16">
+                <h2 class="font-display-lg text-2xl md:text-4xl font-bold text-primary mb-3">Why Choose Seven Oceans?</h2>
+                <p class="text-base text-on-surface-variant max-w-2xl mx-auto">Engineered for extreme conditions, our emergency rations provide reliable nutrition when you need it most.</p>
             </div>
-            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-md md:gap-lg">
-                <div class="bg-surface p-lg rounded-xl hover-lift border border-outline-variant/30">
-                    <div class="w-12 h-12 bg-primary/10 rounded-lg flex items-center justify-center mb-md">
+            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8">
+                <!-- Card 1 -->
+                <div class="bg-surface p-6 md:p-8 rounded-2xl hover:-translate-y-1 transition-transform border border-outline-variant/30 flex flex-col items-center sm:items-start text-center sm:text-left shadow-sm hover:shadow-md">
+                    <div class="w-14 h-14 bg-primary/10 rounded-xl flex items-center justify-center mb-5">
                         <span class="material-symbols-outlined text-primary text-3xl">bolt</span>
                     </div>
-                    <h3 class="font-headline-sm text-primary mb-sm">Ready to Eat</h3>
-                    <p class="text-on-surface-variant">No cooking or water required. Consume directly from the vacuum-sealed pack.</p>
+                    <h3 class="font-display-lg font-bold text-xl text-primary mb-2">Ready to Eat</h3>
+                    <p class="text-on-surface-variant text-sm md:text-base">No cooking or water required. Consume directly from the vacuum-sealed pack.</p>
                 </div>
-                <div class="bg-surface p-lg rounded-xl hover-lift border border-outline-variant/30">
-                    <div class="w-12 h-12 bg-primary/10 rounded-lg flex items-center justify-center mb-md">
+                <!-- Card 2 -->
+                <div class="bg-surface p-6 md:p-8 rounded-2xl hover:-translate-y-1 transition-transform border border-outline-variant/30 flex flex-col items-center sm:items-start text-center sm:text-left shadow-sm hover:shadow-md">
+                    <div class="w-14 h-14 bg-primary/10 rounded-xl flex items-center justify-center mb-5">
                         <span class="material-symbols-outlined text-primary text-3xl">calendar_month</span>
                     </div>
-                    <h3 class="font-headline-sm text-primary mb-sm">Long Shelf Life</h3>
-                    <p class="text-on-surface-variant">Unbeatable 5-year shelf life under various storage conditions.</p>
+                    <h3 class="font-display-lg font-bold text-xl text-primary mb-2">Long Shelf Life</h3>
+                    <p class="text-on-surface-variant text-sm md:text-base">Unbeatable 5-year shelf life under various storage conditions.</p>
                 </div>
-                <div class="bg-surface p-lg rounded-xl hover-lift border border-outline-variant/30">
-                    <div class="w-12 h-12 bg-primary/10 rounded-lg flex items-center justify-center mb-md">
+                <!-- Card 3 -->
+                <div class="bg-surface p-6 md:p-8 rounded-2xl hover:-translate-y-1 transition-transform border border-outline-variant/30 flex flex-col items-center sm:items-start text-center sm:text-left shadow-sm hover:shadow-md">
+                    <div class="w-14 h-14 bg-primary/10 rounded-xl flex items-center justify-center mb-5">
                         <span class="material-symbols-outlined text-primary text-3xl">fitness_center</span>
                     </div>
-                    <h3 class="font-headline-sm text-primary mb-sm">High Energy</h3>
-                    <p class="text-on-surface-variant">Optimized calorie count (approx 2500 kcal per unit) to sustain an adult.</p>
+                    <h3 class="font-display-lg font-bold text-xl text-primary mb-2">High Energy</h3>
+                    <p class="text-on-surface-variant text-sm md:text-base">Optimized calorie count (approx 2500 kcal per unit) to sustain an adult.</p>
                 </div>
-                <div class="bg-surface p-lg rounded-xl hover-lift border border-outline-variant/30">
-                    <div class="w-12 h-12 bg-primary/10 rounded-lg flex items-center justify-center mb-md">
+                <!-- Card 4 -->
+                <div class="bg-surface p-6 md:p-8 rounded-2xl hover:-translate-y-1 transition-transform border border-outline-variant/30 flex flex-col items-center sm:items-start text-center sm:text-left shadow-sm hover:shadow-md">
+                    <div class="w-14 h-14 bg-primary/10 rounded-xl flex items-center justify-center mb-5">
                         <span class="material-symbols-outlined text-primary text-3xl">health_and_safety</span>
                     </div>
-                    <h3 class="font-headline-sm text-primary mb-sm">Nutritious</h3>
-                    <p class="text-on-surface-variant">Balanced mix of carbohydrates, fats, and essential vitamins.</p>
+                    <h3 class="font-display-lg font-bold text-xl text-primary mb-2">Nutritious</h3>
+                    <p class="text-on-surface-variant text-sm md:text-base">Balanced mix of carbohydrates, fats, and essential vitamins.</p>
                 </div>
-                <div class="bg-surface p-lg rounded-xl hover-lift border border-outline-variant/30">
-                    <div class="w-12 h-12 bg-primary/10 rounded-lg flex items-center justify-center mb-md">
+                <!-- Card 5 -->
+                <div class="bg-surface p-6 md:p-8 rounded-2xl hover:-translate-y-1 transition-transform border border-outline-variant/30 flex flex-col items-center sm:items-start text-center sm:text-left shadow-sm hover:shadow-md">
+                    <div class="w-14 h-14 bg-primary/10 rounded-xl flex items-center justify-center mb-5">
                         <span class="material-symbols-outlined text-primary text-3xl">emergency_home</span>
                     </div>
-                    <h3 class="font-headline-sm text-primary mb-sm">Emergency Food</h3>
-                    <p class="text-on-surface-variant">Standard equipment for lifeboats and liferafts globally.</p>
+                    <h3 class="font-display-lg font-bold text-xl text-primary mb-2">Emergency Food</h3>
+                    <p class="text-on-surface-variant text-sm md:text-base">Standard equipment for lifeboats and liferafts globally.</p>
                 </div>
-                <div class="bg-surface p-lg rounded-xl hover-lift border border-outline-variant/30">
-                    <div class="w-12 h-12 bg-primary/10 rounded-lg flex items-center justify-center mb-md">
+                <!-- Card 6 -->
+                <div class="bg-surface p-6 md:p-8 rounded-2xl hover:-translate-y-1 transition-transform border border-outline-variant/30 flex flex-col items-center sm:items-start text-center sm:text-left shadow-sm hover:shadow-md">
+                    <div class="w-14 h-14 bg-primary/10 rounded-xl flex items-center justify-center mb-5">
                         <span class="material-symbols-outlined text-primary text-3xl">travel_explore</span>
                     </div>
-                    <h3 class="font-headline-sm text-primary mb-sm">Travel Friendly</h3>
-                    <p class="text-on-surface-variant">Compact, lightweight, and impact-resistant packaging.</p>
+                    <h3 class="font-display-lg font-bold text-xl text-primary mb-2">Travel Friendly</h3>
+                    <p class="text-on-surface-variant text-sm md:text-base">Compact, lightweight, and impact-resistant packaging.</p>
                 </div>
             </div>
         </div>
     </section>
 
     <!-- Product Details Section -->
-    <section class="py-lg md:py-xl transition-all duration-1000 opacity-100 scroll-mt-24" id="product">
-        <div class="max-w-max-width mx-auto px-md md:px-lg">
-            <div class="grid md:grid-cols-2 gap-lg md:gap-xl items-start">
-                <div class="space-y-md">
-                    <div class="bg-surface-container rounded-xl overflow-hidden aspect-square border border-outline-variant/30">
+    <section class="py-12 md:py-20 transition-all duration-1000 opacity-100 scroll-mt-24" id="product">
+        <div class="max-w-7xl mx-auto px-4 md:px-8">
+            <div class="grid lg:grid-cols-2 gap-10 md:gap-16 items-start">
+                <div class="space-y-4">
+                    <div class="bg-surface-container rounded-2xl overflow-hidden aspect-[4/3] sm:aspect-square border border-outline-variant/30">
                         <img class="w-full h-full object-cover" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAY1FnyfJXoLlWN66lippom9mzQO_coCwC9vd8auWkKUl2_tMhb74HZN0h8nPN9738bTBQPwbuwCU_GxvktzryxpqQxPgImmGclnjoVZfjZwtuZvJkmj7lzO94EAmWpu2IL4R-LUVORmpDV2Q5LKrz18LMtdpM7dqb-zBHSNzw-r1UvcXiJanzGDDxOlpPvqQWQlFFZd1PnNh3lao9ofhOsIn3Hrx6ECqYlepB4vRyyMjVLuQsGNtZwdggLge_HbbH4pw0RjTPGLW8S1cI" alt="Texture of Seven Oceans Emergency Ration">
                     </div>
-                    <div class="grid grid-cols-3 gap-xs md:gap-md">
-                        <div class="bg-surface-container rounded-lg overflow-hidden h-20 md:h-24 border border-outline-variant/30 cursor-pointer hover:opacity-80">
+                    <div class="grid grid-cols-3 gap-2 md:gap-4">
+                        <div class="bg-surface-container rounded-xl overflow-hidden aspect-video sm:aspect-square border border-outline-variant/30 cursor-pointer hover:opacity-80 transition-opacity">
                             <img class="w-full h-full object-cover" src="https://lh3.googleusercontent.com/aida-public/AB6AXuC2jy4IBk26uZAsjLu0_XFf1zuncQ9naASoHt27h-5KQDsac6Dpx1I9AQrogdVK08dq1pECZI43hyfWOLHjFSvw2b-17IOmkcx1EPqClFcXdRgh0IZjO9tnxrCPEDDnS1BeD0KolDSw76WafZzJh18mlb47myePuHY-0EqUff8WnjwvpB2-6dtpq7W2HYRuvRlX5yY0k9EVdgUKI-YRq7nIXLU0gOiSusHCA5Ox02zw0-gUmCLaWl_CpGflKgvabtz774INj7tQlpdjNKI" alt="Nutrition Facts">
                         </div>
-                        <div class="bg-surface-container rounded-lg overflow-hidden h-20 md:h-24 border border-outline-variant/30 cursor-pointer hover:opacity-80">
+                        <div class="bg-surface-container rounded-xl overflow-hidden aspect-video sm:aspect-square border border-outline-variant/30 cursor-pointer hover:opacity-80 transition-opacity">
                             <img class="w-full h-full object-cover" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDVuiTSplyZ7h1gsCAh1gbsEa8XwUXMrBvSyOpmPpd__kg2UR15IpbdYmQXphbZMqEyvR-4MYJ6kAftXvmbUX-S9sM7pW4x7c2plS3KpHjxdZWGvaeZCaoPwOZsCN5YsR0dLWch_0OXLlf9E9OIjgp0Ww5R-64eIE_EApi9tdZ_woYGYMTv4xRVyPzgeNRfkNt3jxrly1Dh4HrF7eFFGwjWraUEihVUfnRgQmWq-63ZVhcyRhBavFMzwFC4S2vthlNJtij-O0r8oNt_" alt="Approval Information">
                         </div>
-                        <div class="bg-surface-container rounded-lg overflow-hidden h-20 md:h-24 border border-outline-variant/30 cursor-pointer hover:opacity-80">
+                        <div class="bg-surface-container rounded-xl overflow-hidden aspect-video sm:aspect-square border border-outline-variant/30 cursor-pointer hover:opacity-80 transition-opacity">
                             <img class="w-full h-full object-cover" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAt08s2yroxnOagiDM5sS977vi8y3XczdR3Chfhywbd3sACK4s-Sa2LeiBDRIZVoqUjmc0xZh6TXCmOItDTFL_Tt_2LXjpiDxkD3fQsCKg42JMkys4lnEssGCk6AhBBau3leYqcMXwE4hdC4pnJPTLLWWasarnKC-kLNiKnKcxp6RLIPwO6r3_mONbBfypZKD5ZOm9s-gF9uu_BbP-L5ftz1TbFnTpQOJ0AjXQsz2QWs8ZRzUV3Ayg7b9zw50EYdUspnNt4nBou9pE41cQ" alt="Side View">
                         </div>
                     </div>
                 </div>
-                <div class="space-y-lg">
+                
+                <div class="space-y-8 mt-6 lg:mt-0">
                     <div>
-                        <h2 class="font-display-lg text-headline-md text-primary mb-sm">Premium Nutrition Facts</h2>
-                        <p class="text-on-surface-variant">Each unit contains 18 tablets, compressed into 9 bars. Each 500g package provides a massive energy boost of 10,300 kJ / 2,500 kcal.</p>
+                        <h2 class="font-display-lg text-2xl md:text-4xl font-bold text-primary mb-3">Premium Nutrition Facts</h2>
+                        <p class="text-on-surface-variant text-base md:text-lg">Each unit contains 18 tablets, compressed into 9 bars. Each 500g package provides a massive energy boost of 10,300 kJ / 2,500 kcal.</p>
                     </div>
-                    <div class="space-y-md">
-                        <div class="flex justify-between items-center py-sm border-b border-outline-variant/50">
-                            <span class="font-medium text-primary">Ingredients</span>
-                            <span class="text-on-surface-variant text-right max-w-[200px] md:max-w-xs text-sm md:text-base">Wheat Flour, Vegetable Fat (Palm), Sugar, Vitamin C, Vitamin B1, Vitamin B6</span>
+                    <div class="space-y-4">
+                        <div class="flex justify-between items-center py-3 border-b border-outline-variant/50">
+                            <span class="font-semibold text-primary">Ingredients</span>
+                            <span class="text-on-surface-variant text-right max-w-[180px] md:max-w-xs text-sm">Wheat Flour, Veg. Fat, Sugar, Vitamin C, B1, B6</span>
                         </div>
-                        <div class="flex justify-between items-center py-sm border-b border-outline-variant/50">
-                            <span class="font-medium text-primary">Energy Content</span>
+                        <div class="flex justify-between items-center py-3 border-b border-outline-variant/50">
+                            <span class="font-semibold text-primary">Energy Content</span>
                             <span class="text-on-surface-variant text-sm md:text-base">10,300 kJ / 2,500 kcal</span>
                         </div>
-                        <div class="flex justify-between items-center py-sm border-b border-outline-variant/50">
-                            <span class="font-medium text-primary">Net Weight</span>
+                        <div class="flex justify-between items-center py-3 border-b border-outline-variant/50">
+                            <span class="font-semibold text-primary">Net Weight</span>
                             <span class="text-on-surface-variant text-sm md:text-base">500g (1.1 lbs)</span>
                         </div>
-                        <div class="flex justify-between items-center py-sm border-b border-outline-variant/50">
-                            <span class="font-medium text-primary">Certifications</span>
+                        <div class="flex justify-between items-center py-3 border-b border-outline-variant/50">
+                            <span class="font-semibold text-primary">Certifications</span>
                             <span class="text-on-surface-variant text-sm md:text-base">ISO 9001</span>
                         </div>
-                        <div class="flex justify-between items-center py-sm border-b border-outline-variant/50">
-                            <span class="font-medium text-primary">Serving</span>
+                        <div class="flex justify-between items-center py-3 border-b border-outline-variant/50">
+                            <span class="font-semibold text-primary">Serving</span>
                             <span class="text-on-surface-variant text-sm md:text-base">9 Bars (56 g per Bar)</span>
                         </div>
                     </div>
-                    <div class="bg-surface-container p-md rounded-xl space-y-sm">
-                        <h4 class="font-bold text-primary flex items-center gap-xs">
+                    
+                    <div class="bg-surface-container p-5 md:p-6 rounded-2xl space-y-4 shadow-sm border border-outline-variant/30">
+                        <h4 class="font-bold text-primary flex items-center gap-2 text-lg">
                             <span class="material-symbols-outlined">info</span> Nutritional Highlights
                         </h4>
-                        <ul class="grid grid-cols-2 gap-sm">
-                            <li class="flex items-center gap-xs text-body-sm"><span class="material-symbols-outlined text-primary text-base">check_circle</span> Rich in Carbohydrates</li>
-                            <li class="flex items-center gap-xs text-body-sm"><span class="material-symbols-outlined text-primary text-base">check_circle</span> Source of Energy</li>
-                            <li class="flex items-center gap-xs text-body-sm"><span class="material-symbols-outlined text-primary text-base">check_circle</span> Contains Protein</li>
-                            <li class="flex items-center gap-xs text-body-sm"><span class="material-symbols-outlined text-primary text-base">check_circle</span> Vitamin C</li>
-                            <li class="flex items-center gap-xs text-body-sm"><span class="material-symbols-outlined text-primary text-base">check_circle</span> Vitamin B1</li>
-                            <li class="flex items-center gap-xs text-body-sm"><span class="material-symbols-outlined text-primary text-base">check_circle</span> Vitamin B6</li>
+                        <ul class="grid grid-cols-1 sm:grid-cols-2 gap-3">
+                            <li class="flex items-center gap-2 text-sm text-on-surface-variant"><span class="material-symbols-outlined text-primary text-base">check_circle</span> Rich in Carbohydrates</li>
+                            <li class="flex items-center gap-2 text-sm text-on-surface-variant"><span class="material-symbols-outlined text-primary text-base">check_circle</span> Source of Energy</li>
+                            <li class="flex items-center gap-2 text-sm text-on-surface-variant"><span class="material-symbols-outlined text-primary text-base">check_circle</span> Contains Protein</li>
+                            <li class="flex items-center gap-2 text-sm text-on-surface-variant"><span class="material-symbols-outlined text-primary text-base">check_circle</span> Vitamin C</li>
+                            <li class="flex items-center gap-2 text-sm text-on-surface-variant"><span class="material-symbols-outlined text-primary text-base">check_circle</span> Vitamin B1</li>
+                            <li class="flex items-center gap-2 text-sm text-on-surface-variant"><span class="material-symbols-outlined text-primary text-base">check_circle</span> Vitamin B6</li>
                         </ul>
                     </div>
                 </div>
@@ -279,130 +297,137 @@
     </section>
 
     <!-- Pricing & COD Info -->
-    <section class="py-lg md:py-xl bg-primary transition-all duration-1000 opacity-100">
-        <div class="max-w-max-width mx-auto px-md md:px-lg">
-            <div class="bg-surface rounded-2xl p-md md:p-xl shadow-2xl flex flex-col md:flex-row items-center justify-between gap-lg md:gap-xl">
-                <div class="space-y-sm text-center md:text-left">
-                    <h3 class="text-headline-md font-bold text-primary">Current Price</h3>
-                    <div class="flex items-center justify-center md:justify-start gap-md flex-wrap">
-                        <span class="text-display-lg font-bold text-primary">৳500</span>
-                        <span class="text-headline-sm text-on-surface-variant line-through decoration-error">Old Price ৳650</span>
-                        <span class="bg-secondary-container text-on-secondary-container px-sm py-xs rounded-full font-bold text-sm">Save ৳150</span>
+    <section class="py-12 md:py-20 bg-primary transition-all duration-1000 opacity-100 relative overflow-hidden">
+        <div class="absolute inset-0 bg-[url('https://www.transparenttextures.com/patterns/cubes.png')] opacity-10 mix-blend-overlay"></div>
+        <div class="max-w-7xl mx-auto px-4 md:px-8 relative z-10">
+            <div class="bg-surface rounded-3xl p-6 md:p-12 shadow-2xl flex flex-col lg:flex-row items-center justify-between gap-8 md:gap-12">
+                <div class="space-y-4 text-center lg:text-left w-full lg:w-auto">
+                    <h3 class="font-display-lg text-2xl md:text-3xl font-bold text-primary">Current Price</h3>
+                    <div class="flex items-center justify-center lg:justify-start gap-3 md:gap-4 flex-wrap">
+                        <span class="text-4xl md:text-5xl font-extrabold text-primary">৳500</span>
+                        <span class="text-lg md:text-xl text-on-surface-variant line-through decoration-error">Old ৳650</span>
+                        <span class="bg-secondary-container text-on-secondary-container px-3 py-1 rounded-full font-bold text-sm shadow-sm">Save ৳150</span>
                     </div>
-                    <p class="text-secondary font-bold flex items-center justify-center md:justify-start gap-xs text-center">
-                        <span class="material-symbols-outlined">verified</span> Original Product
+                    <p class="text-secondary font-bold flex items-center justify-center lg:justify-start gap-1.5 text-center">
+                        <span class="material-symbols-outlined">verified</span> 100% Original Product
                     </p>
                 </div>
-                <div class="h-px w-full md:h-32 md:w-px bg-outline-variant/30"></div>
-                <div class="space-y-md w-full max-w-sm">
-                    <div class="flex items-center md:items-start gap-md">
-                        <div class="w-10 h-10 bg-secondary/10 rounded-full flex items-center justify-center shrink-0">
+                
+                <div class="h-px w-full lg:h-32 lg:w-px bg-outline-variant/40"></div>
+                
+                <div class="space-y-5 w-full lg:max-w-sm">
+                    <div class="flex items-center gap-4 bg-surface-container-lowest p-3 rounded-xl shadow-sm border border-outline-variant/20">
+                        <div class="w-12 h-12 bg-secondary/10 rounded-full flex items-center justify-center shrink-0">
                             <span class="material-symbols-outlined text-secondary">verified</span>
                         </div>
-                        <div><h4 class="font-bold text-primary mt-1 md:mt-0">Original Product</h4></div>
+                        <div><h4 class="font-bold text-primary text-base md:text-lg">Authentic Quality</h4></div>
                     </div>
-                    <div class="flex items-center md:items-start gap-md">
-                        <div class="w-10 h-10 bg-secondary/10 rounded-full flex items-center justify-center shrink-0">
+                    <div class="flex items-center gap-4 bg-surface-container-lowest p-3 rounded-xl shadow-sm border border-outline-variant/20">
+                        <div class="w-12 h-12 bg-secondary/10 rounded-full flex items-center justify-center shrink-0">
                             <span class="material-symbols-outlined text-secondary">payments</span>
                         </div>
-                        <div><h4 class="font-bold text-primary mt-1 md:mt-0">Cash on Delivery</h4></div>
+                        <div><h4 class="font-bold text-primary text-base md:text-lg">Cash on Delivery</h4></div>
                     </div>
-                    <div class="flex items-center md:items-start gap-md">
-                        <div class="w-10 h-10 bg-secondary/10 rounded-full flex items-center justify-center shrink-0">
+                    <div class="flex items-center gap-4 bg-surface-container-lowest p-3 rounded-xl shadow-sm border border-outline-variant/20">
+                        <div class="w-12 h-12 bg-secondary/10 rounded-full flex items-center justify-center shrink-0">
                             <span class="material-symbols-outlined text-secondary">local_shipping</span>
                         </div>
-                        <div><h4 class="font-bold text-primary mt-1 md:mt-0">Fast Delivery</h4></div>
+                        <div><h4 class="font-bold text-primary text-base md:text-lg">Fast Home Delivery</h4></div>
                     </div>
-                    <a class="w-full bg-secondary text-on-secondary py-md rounded-xl font-bold text-center flex items-center justify-center shadow-lg hover:scale-[1.02] transition-transform min-h-[48px]" href="#order">Claim Your Pack Now</a>
+                    <a class="w-full bg-secondary text-on-secondary py-4 rounded-xl font-bold text-center flex items-center justify-center shadow-lg hover:scale-[1.02] active:scale-95 transition-transform min-h-[48px] text-lg mt-2" href="#order">Claim Your Pack Now</a>
                 </div>
             </div>
         </div>
     </section>
 
     <!-- How to Order -->
-    <section class="py-lg md:py-xl transition-all duration-1000 opacity-100">
-        <div class="max-w-max-width mx-auto px-md md:px-lg">
-            <h2 class="font-display-lg text-headline-md text-primary text-center mb-lg md:mb-xl">How to Order?</h2>
-            <div class="grid md:grid-cols-3 gap-lg md:gap-xl relative">
-                <div class="text-center space-y-md">
-                    <div class="w-20 h-20 bg-primary text-on-primary rounded-full flex items-center justify-center text-display-lg mx-auto font-bold relative z-10">1</div>
-                    <h3 class="font-bold text-headline-sm text-primary">Fill the Form</h3>
-                    <p class="text-on-surface-variant">Complete the simple order form below with your delivery details.</p>
+    <section class="py-12 md:py-20 transition-all duration-1000 opacity-100">
+        <div class="max-w-7xl mx-auto px-4 md:px-8">
+            <h2 class="font-display-lg text-2xl md:text-4xl font-bold text-primary text-center mb-10 md:mb-16">How to Order?</h2>
+            <div class="grid md:grid-cols-3 gap-10 md:gap-12 relative">
+                <div class="text-center space-y-4 relative z-10">
+                    <div class="w-16 h-16 md:w-20 md:h-20 bg-primary text-on-primary rounded-full flex items-center justify-center text-2xl md:text-3xl mx-auto font-bold shadow-lg ring-4 ring-surface">1</div>
+                    <h3 class="font-bold text-xl text-primary">Fill the Form</h3>
+                    <p class="text-on-surface-variant text-sm md:text-base">Complete the simple order form below with your delivery details.</p>
                 </div>
-                <div class="text-center space-y-md">
-                    <div class="w-20 h-20 bg-primary text-on-primary rounded-full flex items-center justify-center text-display-lg mx-auto font-bold relative z-10">2</div>
-                    <h3 class="font-bold text-headline-sm text-primary">Order Confirmation</h3>
-                    <p class="text-on-surface-variant">Our executive will call you to confirm the items and address.</p>
+                <div class="text-center space-y-4 relative z-10">
+                    <div class="w-16 h-16 md:w-20 md:h-20 bg-primary text-on-primary rounded-full flex items-center justify-center text-2xl md:text-3xl mx-auto font-bold shadow-lg ring-4 ring-surface">2</div>
+                    <h3 class="font-bold text-xl text-primary">Confirmation Call</h3>
+                    <p class="text-on-surface-variant text-sm md:text-base">Our executive will call you to confirm the items and address.</p>
                 </div>
-                <div class="text-center space-y-md">
-                    <div class="w-20 h-20 bg-primary text-on-primary rounded-full flex items-center justify-center text-display-lg mx-auto font-bold relative z-10">3</div>
-                    <h3 class="font-bold text-headline-sm text-primary">Get Your Pack</h3>
-                    <p class="text-on-surface-variant">Receive your ration and pay only after inspection at delivery.</p>
+                <div class="text-center space-y-4 relative z-10">
+                    <div class="w-16 h-16 md:w-20 md:h-20 bg-primary text-on-primary rounded-full flex items-center justify-center text-2xl md:text-3xl mx-auto font-bold shadow-lg ring-4 ring-surface">3</div>
+                    <h3 class="font-bold text-xl text-primary">Get Your Pack</h3>
+                    <p class="text-on-surface-variant text-sm md:text-base">Receive your ration and pay only after inspection at delivery.</p>
                 </div>
-                <div class="hidden md:block absolute top-10 left-1/4 right-1/4 h-1 bg-primary/10 -z-0"></div>
+                <!-- Connector Line for Desktop -->
+                <div class="hidden md:block absolute top-10 left-1/6 right-1/6 w-2/3 mx-auto h-1 bg-primary/10 -z-0"></div>
             </div>
         </div>
     </section>
 
     <!-- Reviews Section -->
-    <section class="py-lg md:py-xl bg-surface-container-low transition-all duration-1000 opacity-100">
-        <div class="max-w-max-width mx-auto px-md md:px-lg">
-            <h2 class="font-display-lg text-headline-md text-primary text-center mb-lg md:mb-xl">What Our Customers Say</h2>
-            <div class="grid md:grid-cols-3 gap-md">
-                <div class="bg-surface p-lg rounded-xl shadow-sm space-y-md border border-outline-variant/30">
-                    <div class="flex gap-xs text-secondary">
+    <section class="py-12 md:py-20 bg-surface-container-low transition-all duration-1000 opacity-100">
+        <div class="max-w-7xl mx-auto px-4 md:px-8">
+            <h2 class="font-display-lg text-2xl md:text-4xl font-bold text-primary text-center mb-10 md:mb-16">What Our Customers Say</h2>
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                <!-- Review 1 -->
+                <div class="bg-surface p-6 md:p-8 rounded-2xl shadow-sm space-y-4 border border-outline-variant/30 hover:shadow-md transition-shadow">
+                    <div class="flex gap-1 text-secondary">
                         <span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">star</span>
                         <span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">star</span>
                         <span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">star</span>
                         <span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">star</span>
                         <span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">star</span>
                     </div>
-                    <p class="italic text-on-surface-variant">"Bought this for my hiking trip in the mountains. Very compact and tastes surprisingly good. Definitely brings peace of mind."</p>
-                    <div class="flex items-center gap-md">
-                        <div class="w-12 h-12 rounded-full bg-surface-container-high flex items-center justify-center overflow-hidden">
+                    <p class="italic text-on-surface-variant text-sm md:text-base leading-relaxed">"Bought this for my hiking trip in the mountains. Very compact and tastes surprisingly good. Definitely brings peace of mind."</p>
+                    <div class="flex items-center gap-4 pt-2">
+                        <div class="w-12 h-12 rounded-full bg-surface-container-high flex items-center justify-center overflow-hidden shrink-0">
                             <img class="w-full h-full object-cover" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBKvGGPfPUd3P02VE8i1orDEEY_MU0zdDJvv_vccmPCQwLpx23gp5w6UEUNvzMKWBwF4ojZK6fB2lXEtlEfI7pmbYlADa6bBkFexh5n1ZSUR8R2_kf8I-2hBoVxoPtag1IrfV4SV3c82Eq3C7fkmEURxw3AnrldKlmwQp_tbi7l5DJidZQFsL_eXnB-higtq3e4wwbBeL7oOhklCJrzs7oV1l46glath_BlYOmhDpfKkkvCLWla62fi71oWjA1ILqcTBjolTx5-1yag" alt="User 1">
                         </div>
                         <div>
                             <p class="font-bold text-primary">Sajid Hasan</p>
-                            <p class="text-body-sm text-on-surface-variant">Outdoor Enthusiast</p>
+                            <p class="text-xs md:text-sm text-on-surface-variant">Outdoor Enthusiast</p>
                         </div>
                     </div>
                 </div>
-                <div class="bg-surface p-lg rounded-xl shadow-sm space-y-md border border-outline-variant/30">
-                    <div class="flex gap-xs text-secondary">
+                <!-- Review 2 -->
+                <div class="bg-surface p-6 md:p-8 rounded-2xl shadow-sm space-y-4 border border-outline-variant/30 hover:shadow-md transition-shadow">
+                    <div class="flex gap-1 text-secondary">
                         <span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">star</span>
                         <span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">star</span>
                         <span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">star</span>
                         <span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">star</span>
                         <span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">star</span>
                     </div>
-                    <p class="italic text-on-surface-variant">"As a sailor, I know the quality of Seven Oceans. Great to find the authentic original product here at Boichitro Shop BD."</p>
-                    <div class="flex items-center gap-md">
-                        <div class="w-12 h-12 rounded-full bg-surface-container-high flex items-center justify-center overflow-hidden">
+                    <p class="italic text-on-surface-variant text-sm md:text-base leading-relaxed">"As a sailor, I know the quality of Seven Oceans. Great to find the authentic original product here at Boichitro Shop BD."</p>
+                    <div class="flex items-center gap-4 pt-2">
+                        <div class="w-12 h-12 rounded-full bg-surface-container-high flex items-center justify-center overflow-hidden shrink-0">
                             <img class="w-full h-full object-cover" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBVN2DvLOIeu21mpgfCZGmMlYcvAOKF5ngAe7bqtMtWefOZwWn0TdrSYU3FVkblJmjAJOD-LLQ_JuFCw2rqXanogAgSJeahMY_FKVTPNOKD3ezC7O7ErJVFAWOjW63mGSO6PaZdesDWsLLqxW2FZk7Lkdb_9zVmAJa4KxCtJj0iFXMqONQ4fUhsjfenZs4xUsIjBPWVx6huX7N9uRSJTp8Senh7xmubsmfKpnxAiZMvLEv0ljfq9C5tzMGpqML8urdMymm21QZ_FKUE" alt="User 2">
                         </div>
                         <div>
                             <p class="font-bold text-primary">Abdullah Al Mamun</p>
-                            <p class="text-body-sm text-on-surface-variant">Verified Professional</p>
+                            <p class="text-xs md:text-sm text-on-surface-variant">Verified Professional</p>
                         </div>
                     </div>
                 </div>
-                <div class="bg-surface p-lg rounded-xl shadow-sm space-y-md border border-outline-variant/30">
-                    <div class="flex gap-xs text-secondary">
+                <!-- Review 3 -->
+                <div class="bg-surface p-6 md:p-8 rounded-2xl shadow-sm space-y-4 border border-outline-variant/30 hover:shadow-md transition-shadow">
+                    <div class="flex gap-1 text-secondary">
                         <span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">star</span>
                         <span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">star</span>
                         <span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">star</span>
                         <span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">star</span>
                         <span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">star_half</span>
                     </div>
-                    <p class="italic text-on-surface-variant">"Fast delivery and original packaging. Kept two in my car emergency kit. Packaging is very sturdy."</p>
-                    <div class="flex items-center gap-md">
-                        <div class="w-12 h-12 rounded-full bg-surface-container-high flex items-center justify-center overflow-hidden">
+                    <p class="italic text-on-surface-variant text-sm md:text-base leading-relaxed">"Fast delivery and original packaging. Kept two in my car emergency kit. Packaging is very sturdy."</p>
+                    <div class="flex items-center gap-4 pt-2">
+                        <div class="w-12 h-12 rounded-full bg-surface-container-high flex items-center justify-center overflow-hidden shrink-0">
                             <img class="w-full h-full object-cover" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDc8kW76UyngZy_t_3VpLdBLNSLREJWpxazgL9Lwrx1Hu8n483tY3TRzIcYKLF7awJsr3_Lu5aA8WwXKYtcJ0FSoY0zSUKll1IhsUqJzY01wbNUyHM7TKzFDuVDUHG6HXFDI0LBscNHDdMDNnbhhPyR2sycww8LJ-rAXFW9A99poHeeDF6dqqMNb5i2aGcgqiW1mMYsnkeZhSgszGW8Ap42R4mpkci0iTrbQvBZOnjMM5AsuWcMcC0aMik2Erh6rsjfbYirMYRpAPvT" alt="User 3">
                         </div>
                         <div>
                             <p class="font-bold text-primary">Tania Sultana</p>
-                            <p class="text-body-sm text-on-surface-variant">Home Maker</p>
+                            <p class="text-xs md:text-sm text-on-surface-variant">Home Maker</p>
                         </div>
                     </div>
                 </div>
@@ -411,122 +436,141 @@
     </section>
 
     <!-- FAQ Section -->
-    <section class="py-lg md:py-xl transition-all duration-1000 opacity-100 scroll-mt-24" id="faq">
-        <div class="max-w-3xl mx-auto px-md md:px-lg">
-            <h2 class="font-display-lg text-headline-md text-primary text-center mb-lg md:mb-xl">Frequently Asked Questions</h2>
-            <div class="space-y-md">
-                <details class="group bg-surface p-md rounded-xl border border-outline-variant/30 open:shadow-md transition-all">
-                    <summary class="flex justify-between items-center font-bold text-primary cursor-pointer list-none min-h-[32px]">
-                        <span>How many bars are inside one pack?</span><span class="material-symbols-outlined group-open:rotate-180 transition-transform">expand_more</span>
+    <section class="py-12 md:py-20 transition-all duration-1000 opacity-100 scroll-mt-24" id="faq">
+        <div class="max-w-3xl mx-auto px-4 md:px-8">
+            <h2 class="font-display-lg text-2xl md:text-4xl font-bold text-primary text-center mb-8 md:mb-12">Frequently Asked Questions</h2>
+            <div class="space-y-4">
+                <details class="group bg-surface p-4 md:p-6 rounded-xl border border-outline-variant/30 open:shadow-md transition-all">
+                    <summary class="flex justify-between items-center font-bold text-primary cursor-pointer list-none min-h-[32px] text-base md:text-lg">
+                        <span>How many bars are inside one pack?</span><span class="material-symbols-outlined group-open:rotate-180 transition-transform shrink-0 ml-2">expand_more</span>
                     </summary>
-                    <p class="mt-md text-on-surface-variant">There are 9 bars inside each 500g pack.</p>
+                    <p class="mt-4 text-on-surface-variant text-sm md:text-base border-t border-outline-variant/20 pt-4">There are 9 bars inside each 500g pack.</p>
                 </details>
-                <details class="group bg-surface p-md rounded-xl border border-outline-variant/30 open:shadow-md transition-all">
-                    <summary class="flex justify-between items-center font-bold text-primary cursor-pointer list-none min-h-[32px]">
-                        <span>How should I store the product?</span><span class="material-symbols-outlined group-open:rotate-180 transition-transform">expand_more</span>
+                <details class="group bg-surface p-4 md:p-6 rounded-xl border border-outline-variant/30 open:shadow-md transition-all">
+                    <summary class="flex justify-between items-center font-bold text-primary cursor-pointer list-none min-h-[32px] text-base md:text-lg">
+                        <span>How should I store the product?</span><span class="material-symbols-outlined group-open:rotate-180 transition-transform shrink-0 ml-2">expand_more</span>
                     </summary>
-                    <p class="mt-md text-on-surface-variant">Store in a cool, dry place for maximum shelf life.</p>
+                    <p class="mt-4 text-on-surface-variant text-sm md:text-base border-t border-outline-variant/20 pt-4">Store in a cool, dry place for maximum shelf life. Avoid direct intense sunlight if possible.</p>
                 </details>
-                <details class="group bg-surface p-md rounded-xl border border-outline-variant/30 open:shadow-md transition-all">
-                    <summary class="flex justify-between items-center font-bold text-primary cursor-pointer list-none min-h-[32px]">
-                        <span>Can children consume it?</span><span class="material-symbols-outlined group-open:rotate-180 transition-transform">expand_more</span>
+                <details class="group bg-surface p-4 md:p-6 rounded-xl border border-outline-variant/30 open:shadow-md transition-all">
+                    <summary class="flex justify-between items-center font-bold text-primary cursor-pointer list-none min-h-[32px] text-base md:text-lg">
+                        <span>Can children consume it?</span><span class="material-symbols-outlined group-open:rotate-180 transition-transform shrink-0 ml-2">expand_more</span>
                     </summary>
-                    <p class="mt-md text-on-surface-variant">Yes, it is nutritious and safe for all ages. It can be eaten as is or mixed with water/milk for younger children.</p>
+                    <p class="mt-4 text-on-surface-variant text-sm md:text-base border-t border-outline-variant/20 pt-4">Yes, it is nutritious and safe for all ages. It can be eaten as is or mixed with water/milk for younger children to make a porridge.</p>
                 </details>
-                <details class="group bg-surface p-md rounded-xl border border-outline-variant/30 open:shadow-md transition-all">
-                    <summary class="flex justify-between items-center font-bold text-primary cursor-pointer list-none min-h-[32px]">
-                        <span>Is cooking required?</span><span class="material-symbols-outlined group-open:rotate-180 transition-transform">expand_more</span>
+                <details class="group bg-surface p-4 md:p-6 rounded-xl border border-outline-variant/30 open:shadow-md transition-all">
+                    <summary class="flex justify-between items-center font-bold text-primary cursor-pointer list-none min-h-[32px] text-base md:text-lg">
+                        <span>Is cooking required?</span><span class="material-symbols-outlined group-open:rotate-180 transition-transform shrink-0 ml-2">expand_more</span>
                     </summary>
-                    <p class="mt-md text-on-surface-variant">No, it is ready to eat straight from the pack.</p>
+                    <p class="mt-4 text-on-surface-variant text-sm md:text-base border-t border-outline-variant/20 pt-4">No, it is 100% ready to eat straight from the pack.</p>
                 </details>
-                <details class="group bg-surface p-md rounded-xl border border-outline-variant/30 open:shadow-md transition-all">
-                    <summary class="flex justify-between items-center font-bold text-primary cursor-pointer list-none min-h-[32px]">
-                        <span>Where is it manufactured?</span><span class="material-symbols-outlined group-open:rotate-180 transition-transform">expand_more</span>
+                <details class="group bg-surface p-4 md:p-6 rounded-xl border border-outline-variant/30 open:shadow-md transition-all">
+                    <summary class="flex justify-between items-center font-bold text-primary cursor-pointer list-none min-h-[32px] text-base md:text-lg">
+                        <span>Where is it manufactured?</span><span class="material-symbols-outlined group-open:rotate-180 transition-transform shrink-0 ml-2">expand_more</span>
                     </summary>
-                    <p class="mt-md text-on-surface-variant">Seven Oceans rations are manufactured in Norway by GC Rieber Compact.</p>
-                </details>
-                <details class="group bg-surface p-md rounded-xl border border-outline-variant/30 open:shadow-md transition-all">
-                    <summary class="flex justify-between items-center font-bold text-primary cursor-pointer list-none min-h-[32px]">
-                        <span>What vitamins does it contain?</span><span class="material-symbols-outlined group-open:rotate-180 transition-transform">expand_more</span>
-                    </summary>
-                    <p class="mt-md text-on-surface-variant">It contains essential Vitamin C, B1, and B6.</p>
+                    <p class="mt-4 text-on-surface-variant text-sm md:text-base border-t border-outline-variant/20 pt-4">Seven Oceans rations are manufactured in Norway by GC Rieber Compact.</p>
                 </details>
             </div>
         </div>
     </section>
 
     <!-- Order / Contact Section -->
-    <section class="py-lg md:py-xl bg-surface-container transition-all duration-1000 opacity-100 scroll-mt-24" id="order">
-        <div class="max-w-5xl mx-auto px-md md:px-lg">
-            <div class="bg-surface rounded-2xl shadow-xl overflow-hidden grid grid-cols-1 lg:grid-cols-5">
+    <section class="py-12 md:py-20 bg-surface-container transition-all duration-1000 opacity-100 scroll-mt-24" id="order">
+        <div class="max-w-5xl mx-auto px-4 md:px-8">
+            <div class="bg-surface rounded-3xl shadow-xl overflow-hidden grid grid-cols-1 lg:grid-cols-5">
                 
-                <div class="bg-primary p-md md:p-lg lg:p-xl text-on-primary space-y-md md:space-y-lg lg:col-span-2 flex flex-col justify-center">
-                    <h2 class="font-display-lg text-headline-md">Contact & Order</h2>
-                    <p class="opacity-80">Fill out this form and our team will get in touch with you shortly to confirm your delivery.</p>
-                    <div class="space-y-md">
-                        <div class="flex items-center gap-md"><span class="material-symbols-outlined">call</span><a href="https://wa.me/8801818028094" class="hover:underline min-h-[44px] flex items-center">+880 1818-028094</a></div>
-                        <div class="flex items-center gap-md"><span class="material-symbols-outlined">location_on</span><span class="">Bangladesh</span></div>
-                        <div class="flex items-center gap-md"><span class="material-symbols-outlined">mail</span><a href="mailto:boichitrobdshop@gmail.com" class="hover:underline min-h-[44px] flex items-center">boichitrobdshop@gmail.com</a></div>
-                    </div>
-                    <div class="pt-lg border-t border-on-primary/10">
-                        <p class="font-label-caps text-label-caps uppercase tracking-widest opacity-60 mb-sm">Order Status</p>
-                        <div class="flex items-center gap-xs">
-                            <div class="w-3 h-3 bg-secondary rounded-full animate-ping"></div>
-                            <span class="font-bold">Next Day Delivery Available</span>
+                <!-- Contact Info Panel -->
+                <div class="bg-primary p-8 md:p-10 lg:p-12 text-on-primary space-y-6 lg:col-span-2 flex flex-col justify-center relative overflow-hidden">
+                    <div class="absolute -top-24 -left-24 w-64 h-64 bg-white/5 rounded-full blur-3xl"></div>
+                    <div class="absolute -bottom-24 -right-24 w-64 h-64 bg-secondary/10 rounded-full blur-3xl"></div>
+                    
+                    <div class="relative z-10 space-y-6">
+                        <h2 class="font-display-lg text-3xl font-bold">Contact & Order</h2>
+                        <p class="text-on-primary/80 text-sm md:text-base">Fill out this form and our team will get in touch with you shortly to confirm your delivery.</p>
+                        
+                        <div class="space-y-4 pt-4">
+                            <div class="flex items-center gap-4">
+                                <div class="w-10 h-10 rounded-full bg-white/10 flex items-center justify-center shrink-0">
+                                    <span class="material-symbols-outlined">call</span>
+                                </div>
+                                <a href="https://wa.me/8801818028094" class="hover:underline font-medium">+880 1818-028094</a>
+                            </div>
+                            <div class="flex items-center gap-4">
+                                <div class="w-10 h-10 rounded-full bg-white/10 flex items-center justify-center shrink-0">
+                                    <span class="material-symbols-outlined">location_on</span>
+                                </div>
+                                <span class="font-medium">Bangladesh</span>
+                            </div>
+                            <div class="flex items-center gap-4">
+                                <div class="w-10 h-10 rounded-full bg-white/10 flex items-center justify-center shrink-0">
+                                    <span class="material-symbols-outlined">mail</span>
+                                </div>
+                                <a href="mailto:boichitrobdshop@gmail.com" class="hover:underline font-medium truncate">boichitrobdshop@gmail.com</a>
+                            </div>
+                        </div>
+                        
+                        <div class="pt-8 border-t border-on-primary/10">
+                            <p class="font-label-caps text-xs uppercase tracking-widest opacity-60 mb-2">Order Status</p>
+                            <div class="flex items-center gap-2">
+                                <div class="w-3 h-3 bg-secondary rounded-full animate-ping"></div>
+                                <span class="font-bold text-sm">Next Day Delivery Available</span>
+                            </div>
                         </div>
                     </div>
                 </div>
 
                 <!-- Form Section -->
-                <form id="order-form" class="p-md md:p-lg lg:p-xl space-y-md bg-white flex flex-col justify-center lg:col-span-3">
+                <form id="order-form" class="p-6 md:p-10 lg:p-12 space-y-5 bg-white flex flex-col justify-center lg:col-span-3">
                     
-                    <!-- Added name="name" -->
-                    <div class="space-y-xs">
-                        <label class="font-label-caps text-label-caps text-primary uppercase">Full Name / নাম</label>
-                        <input class="w-full px-md py-sm rounded-lg border border-outline-variant focus:border-primary focus:ring-0 outline-none transition-all min-h-[48px]" placeholder="Enter your name" type="text" name="name" required>
+                    <!-- Alert Message Container (Hidden by default) -->
+                    <div id="form-error-msg" class="hidden bg-error-container text-on-error-container p-4 rounded-lg flex items-center gap-2 text-sm font-medium">
+                        <span class="material-symbols-outlined">error</span>
+                        <p>দুঃখিত, কোনো একটি সমস্যা হয়েছে। দয়া করে আবার চেষ্টা করুন।</p>
                     </div>
 
-                    <!-- Added name="phone" -->
-                    <div class="space-y-xs">
-                        <label class="font-label-caps text-label-caps text-primary uppercase">Phone Number / ফোন নম্বর</label>
-                        <input class="w-full px-md py-sm rounded-lg border border-outline-variant focus:border-primary focus:ring-0 outline-none transition-all min-h-[48px]" placeholder="01XXXXXXXXX" type="tel" name="phone" required>
+                    <div class="space-y-1.5">
+                        <label class="font-label-caps text-xs text-primary uppercase font-bold tracking-wider">Full Name / নাম *</label>
+                        <input class="w-full px-4 py-3 rounded-xl border border-outline-variant/60 focus:border-primary focus:ring-1 focus:ring-primary outline-none transition-all min-h-[48px] bg-surface-container-lowest" placeholder="Enter your full name" type="text" name="name" required>
+                    </div>
+
+                    <div class="space-y-1.5">
+                        <label class="font-label-caps text-xs text-primary uppercase font-bold tracking-wider">Phone Number / ফোন নম্বর *</label>
+                        <input class="w-full px-4 py-3 rounded-xl border border-outline-variant/60 focus:border-primary focus:ring-1 focus:ring-primary outline-none transition-all min-h-[48px] bg-surface-container-lowest" placeholder="01XXXXXXXXX" type="tel" name="phone" required>
                     </div>
                     
-                    <!-- Added name="area", Changed values to text so it shows beautifully in Google Sheet -->
-                    <div class="space-y-xs">
-                        <label class="font-label-caps text-label-caps text-primary uppercase">Delivery Area / ডেলিভারি এরিয়া</label>
-                        <select id="delivery-area" name="area" class="w-full px-md py-sm rounded-lg border border-outline-variant focus:border-primary focus:ring-0 outline-none transition-all bg-white min-h-[48px] text-on-surface">
-                            <option value="Chattogram" data-price="100">Chattogram (৳100)</option>
+                    <div class="space-y-1.5">
+                        <label class="font-label-caps text-xs text-primary uppercase font-bold tracking-wider">Delivery Area / ডেলিভারি এরিয়া *</label>
+                        <select id="delivery-area" name="area" class="w-full px-4 py-3 rounded-xl border border-outline-variant/60 focus:border-primary focus:ring-1 focus:ring-primary outline-none transition-all bg-surface-container-lowest min-h-[48px] text-on-surface cursor-pointer appearance-none">
+                            <option value="Chattogram" data-price="100">Chattogram City (৳100)</option>
                             <option value="Outside Chattogram" data-price="150">Outside Chattogram (৳150)</option>
                         </select>
                     </div>
                     
-                    <!-- Added Hidden Input for quantity -->
+                    <!-- Hidden Input for quantity -->
                     <input type="hidden" name="quantity" id="hidden-quantity" value="1">
 
-                    <div class="space-y-xs">
-                        <label class="font-label-caps text-label-caps text-primary uppercase">Quantity / পরিমাণ</label>
-                        <div class="flex items-center justify-between bg-surface-container-low border border-outline-variant rounded-lg p-1 shadow-sm h-[48px]">
-                            <button id="btn-minus" type="button" class="w-10 h-10 flex items-center justify-center bg-primary text-on-primary rounded-lg hover:bg-primary-container transition-colors active:scale-95">
+                    <div class="space-y-1.5">
+                        <label class="font-label-caps text-xs text-primary uppercase font-bold tracking-wider">Quantity / পরিমাণ</label>
+                        <div class="flex items-center justify-between bg-surface-container-low border border-outline-variant/60 rounded-xl p-1.5 shadow-sm h-[56px]">
+                            <button id="btn-minus" type="button" class="w-12 h-12 flex items-center justify-center bg-surface text-primary border border-outline-variant/30 rounded-lg hover:bg-surface-variant transition-colors active:scale-95 shadow-sm">
                                 <span class="material-symbols-outlined">remove</span>
                             </button>
                             <div class="flex-1 text-center">
-                                <span id="qty-display" class="font-bold text-primary text-body-md">1 Pack</span>
+                                <span id="qty-display" class="font-bold text-primary text-lg">1 Pack</span>
                             </div>
-                            <button id="btn-plus" type="button" class="w-10 h-10 flex items-center justify-center bg-primary text-on-primary rounded-lg hover:bg-primary-container transition-colors active:scale-95">
+                            <button id="btn-plus" type="button" class="w-12 h-12 flex items-center justify-center bg-primary text-on-primary rounded-lg hover:bg-primary-container transition-colors active:scale-95 shadow-sm">
                                 <span class="material-symbols-outlined">add</span>
                             </button>
                         </div>
                     </div>
 
-                    <!-- Added name="address" -->
-                    <div class="space-y-xs">
-                        <label class="font-label-caps text-label-caps text-primary uppercase">Delivery Address / ঠিকানা</label>
-                        <textarea class="w-full px-md py-sm rounded-lg border border-outline-variant focus:border-primary focus:ring-0 outline-none transition-all resize-none min-h-[80px]" placeholder="House, Road, Area, City" rows="2" name="address" required></textarea>
+                    <div class="space-y-1.5">
+                        <label class="font-label-caps text-xs text-primary uppercase font-bold tracking-wider">Delivery Address / ঠিকানা *</label>
+                        <textarea class="w-full px-4 py-3 rounded-xl border border-outline-variant/60 focus:border-primary focus:ring-1 focus:ring-primary outline-none transition-all resize-none min-h-[80px] bg-surface-container-lowest" placeholder="House, Road, Area, City" rows="2" name="address" required></textarea>
                     </div>
                     
                     <!-- Live Price Display -->
-                    <div class="bg-surface-container rounded-lg p-md space-y-sm text-body-sm border border-outline-variant/30 mt-sm">
+                    <div class="bg-surface-container-low rounded-xl p-5 space-y-3 text-sm border border-outline-variant/40 mt-2">
                         <div class="flex justify-between text-on-surface-variant">
                             <span>Subtotal</span>
                             <span id="display-subtotal" class="font-bold text-primary">৳500</span>
@@ -535,28 +579,33 @@
                             <span>Delivery Charge</span>
                             <span id="display-delivery" class="font-bold text-primary">৳100</span>
                         </div>
-                        <div class="flex justify-between border-t border-outline-variant/50 pt-sm mt-sm">
-                            <span class="font-bold text-primary">Grand Total</span>
-                            <span id="display-total" class="font-bold text-primary text-headline-sm">৳600</span>
+                        <div class="flex justify-between border-t border-outline-variant/50 pt-3 mt-1">
+                            <span class="font-bold text-primary text-base">Grand Total</span>
+                            <span id="display-total" class="font-extrabold text-primary text-xl">৳600</span>
                         </div>
                     </div>
 
-                    <button id="order-submit-btn" class="w-full bg-primary text-on-primary py-md rounded-xl font-bold hover:bg-primary-container transition-all shadow-lg active:scale-95 duration-150 min-h-[56px] text-body-lg mt-md" type="submit">Confirm Order ৳600</button>
-                    <p class="text-center text-body-sm text-on-surface-variant mt-sm">No payment required now. Pay on delivery.</p>
+                    <button id="order-submit-btn" class="w-full bg-primary text-on-primary py-4 rounded-xl font-bold hover:bg-primary-container hover:text-white transition-all shadow-lg hover:shadow-primary/30 active:scale-95 duration-150 min-h-[56px] text-lg mt-4 flex items-center justify-center gap-2" type="submit">
+                        <span class="material-symbols-outlined text-xl hidden" id="spinner-icon" style="animation: spin 1s linear infinite;">progress_activity</span>
+                        <span id="btn-text">Confirm Order ৳600</span>
+                    </button>
+                    <p class="text-center text-xs text-on-surface-variant mt-2 font-medium flex items-center justify-center gap-1">
+                        <span class="material-symbols-outlined text-sm">verified_user</span> No payment required now. Pay on delivery.
+                    </p>
                 </form>
             </div>
         </div>
     </section>
 
     <!-- About Section -->
-    <section class="py-lg md:py-xl transition-all duration-1000 opacity-100">
-        <div class="max-w-max-width mx-auto px-md md:px-lg text-center space-y-md">
-            <h2 class="font-display-lg text-headline-md text-primary">About Boichitro Shop BD</h2>
-            <div class="max-w-3xl mx-auto space-y-md">
-                <p class="text-on-surface-variant leading-relaxed">
+    <section class="py-12 md:py-20 transition-all duration-1000 opacity-100">
+        <div class="max-w-7xl mx-auto px-4 md:px-8 text-center space-y-6">
+            <h2 class="font-display-lg text-2xl md:text-4xl font-bold text-primary">About Boichitro Shop BD</h2>
+            <div class="max-w-3xl mx-auto space-y-4">
+                <p class="text-on-surface-variant leading-relaxed text-sm md:text-base">
                     At Boichitro Shop BD, we are committed to providing premium safety and survival solutions to the people of Bangladesh. We understand that preparedness is not just a luxury but a necessity. That's why we bring world-renowned products like Seven Oceans to your doorstep.
                 </p>
-                <p class="text-on-surface-variant leading-relaxed">
+                <p class="text-on-surface-variant leading-relaxed text-sm md:text-base">
                     Our mission is to empower adventurers, sailors, and families with high-quality emergency supplies that meet international safety standards. With every purchase, you are not just buying food; you are investing in safety, reliability, and peace of mind.
                 </p>
             </div>
@@ -564,68 +613,105 @@
     </section>
 
     <!-- Footer -->
-    <footer class="bg-surface-container-highest dark:bg-tertiary-container full-width rounded-t-xl overflow-hidden mt-md">
-        <div class="grid grid-cols-1 md:grid-cols-3 gap-lg w-full px-md md:px-lg py-xl max-w-max-width mx-auto">
-            <div class="space-y-md text-center md:text-left flex flex-col items-center md:items-start">
+    <footer class="bg-surface-container-highest dark:bg-tertiary-container full-width rounded-t-3xl overflow-hidden mt-8">
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-10 md:gap-8 w-full px-6 md:px-12 py-12 md:py-16 max-w-7xl mx-auto">
+            <div class="space-y-4 text-center md:text-left flex flex-col items-center md:items-start">
                 <a href="#home" class="inline-block">
-                    <span class="font-display-lg font-extrabold text-3xl text-primary tracking-tight">Boichitro Shop BD</span>
+                    <span class="font-display-lg font-extrabold text-2xl md:text-3xl text-primary tracking-tight">Boichitro Shop BD</span>
                 </a>
-                <p class="text-on-surface-variant text-body-sm max-w-xs mx-auto md:mx-0">Your trusted partner for premium emergency rations and survival gear in Bangladesh.</p>
+                <p class="text-on-surface-variant text-sm max-w-xs mx-auto md:mx-0 leading-relaxed">Your trusted partner for premium emergency rations and survival gear in Bangladesh.</p>
             </div>
-            <div class="grid grid-cols-2 gap-md text-center md:text-left">
-                <div class="space-y-sm">
-                    <h4 class="font-bold text-on-surface">Company</h4>
-                    <ul class="space-y-xs text-body-sm">
-                        <li><a class="text-on-surface-variant hover:text-primary transition-colors min-h-[44px] flex items-center justify-center md:justify-start" href="#">Privacy Policy</a></li>
-                        <li><a class="text-on-surface-variant hover:text-primary transition-colors min-h-[44px] flex items-center justify-center md:justify-start" href="#">Terms of Service</a></li>
-                        <li><a class="text-on-surface-variant hover:text-primary transition-colors min-h-[44px] flex items-center justify-center md:justify-start" href="#">Shipping Info</a></li>
+            
+            <div class="grid grid-cols-2 gap-6 text-center md:text-left">
+                <div class="space-y-3">
+                    <h4 class="font-bold text-on-surface uppercase tracking-wider text-sm">Company</h4>
+                    <ul class="space-y-2 text-sm">
+                        <li><a class="text-on-surface-variant hover:text-primary transition-colors py-1 inline-block" href="#">Privacy Policy</a></li>
+                        <li><a class="text-on-surface-variant hover:text-primary transition-colors py-1 inline-block" href="#">Terms of Service</a></li>
+                        <li><a class="text-on-surface-variant hover:text-primary transition-colors py-1 inline-block" href="#">Shipping Info</a></li>
                     </ul>
                 </div>
-                <div class="space-y-sm">
-                    <h4 class="font-bold text-on-surface">Connect</h4>
-                    <ul class="space-y-xs text-body-sm">
-                        <li><a class="text-on-surface-variant hover:text-primary transition-colors min-h-[44px] flex items-center justify-center md:justify-start" href="https://www.facebook.com/boichitrobdshop" target="_blank">Facebook</a></li>
-                        <li><a class="text-on-surface-variant hover:text-primary transition-colors min-h-[44px] flex items-center justify-center md:justify-start" href="https://www.instagram.com/boichitroshopbd/" target="_blank">Instagram</a></li>
-                        <li><a class="text-on-surface-variant hover:text-primary transition-colors min-h-[44px] flex items-center justify-center md:justify-start" href="https://wa.me/8801818028094" target="_blank">WhatsApp</a></li>
+                <div class="space-y-3">
+                    <h4 class="font-bold text-on-surface uppercase tracking-wider text-sm">Connect</h4>
+                    <ul class="space-y-2 text-sm">
+                        <li><a class="text-on-surface-variant hover:text-primary transition-colors py-1 inline-block" href="https://www.facebook.com/boichitrobdshop" target="_blank">Facebook</a></li>
+                        <li><a class="text-on-surface-variant hover:text-primary transition-colors py-1 inline-block" href="https://www.instagram.com/boichitroshopbd/" target="_blank">Instagram</a></li>
+                        <li><a class="text-on-surface-variant hover:text-primary transition-colors py-1 inline-block" href="https://wa.me/8801818028094" target="_blank">WhatsApp</a></li>
                     </ul>
                 </div>
             </div>
-            <div class="space-y-md text-center md:text-left">
-                <h4 class="font-bold text-on-surface">Newsletter</h4>
-                <div class="flex gap-xs justify-center md:justify-start">
-                    <input class="bg-surface-container border-none rounded-lg px-md py-sm w-full max-w-[200px] md:max-w-full text-body-sm min-h-[48px]" placeholder="Email" type="email">
-                    <button class="bg-primary text-on-primary px-md py-sm rounded-lg font-bold min-h-[48px] flex items-center justify-center"><span class="material-symbols-outlined">send</span></button>
+            
+            <div class="space-y-4 text-center md:text-left">
+                <h4 class="font-bold text-on-surface uppercase tracking-wider text-sm">Newsletter</h4>
+                <div class="flex gap-2 justify-center md:justify-start w-full max-w-xs mx-auto md:mx-0">
+                    <input class="bg-surface-container-lowest border border-outline-variant/30 focus:border-primary outline-none rounded-xl px-4 py-3 w-full text-sm min-h-[48px]" placeholder="Email address" type="email">
+                    <button class="bg-primary text-on-primary px-5 py-3 rounded-xl font-bold min-h-[48px] flex items-center justify-center hover:bg-primary-container transition-colors active:scale-95"><span class="material-symbols-outlined">send</span></button>
                 </div>
-                <p class="text-body-sm text-on-surface-variant">Get survival tips and special offers.</p>
+                <p class="text-xs text-on-surface-variant">Get survival tips and special offers.</p>
             </div>
         </div>
-        <div class="w-full px-md md:px-lg py-md border-t border-outline-variant/30 text-center text-body-sm text-on-surface-variant">
+        <div class="w-full px-6 md:px-12 py-6 border-t border-outline-variant/30 text-center text-xs text-on-surface-variant bg-surface-container-high/50">
             © 2024 Boichitro Shop BD. All rights reserved. Seven Oceans is a registered trademark.
         </div>
     </footer>
 
     <!-- Order Success Popup Modal -->
-    <div id="success-modal" class="fixed inset-0 z-[100] flex items-center justify-center bg-on-surface/50 backdrop-blur-sm hidden opacity-0 transition-opacity duration-300">
-        <div class="bg-surface rounded-2xl p-xl shadow-2xl max-w-sm w-full mx-md transform scale-95 transition-transform duration-300" id="success-modal-content">
-            <div class="w-16 h-16 bg-primary/10 rounded-full flex items-center justify-center mx-auto mb-md">
-                <span class="material-symbols-outlined text-primary text-4xl">check_circle</span>
+    <div id="success-modal" class="fixed inset-0 z-[100] flex items-center justify-center bg-on-surface/50 backdrop-blur-sm hidden opacity-0 transition-opacity duration-300 p-4">
+        <div class="bg-surface rounded-3xl p-8 md:p-10 shadow-2xl max-w-sm w-full transform scale-95 transition-transform duration-300" id="success-modal-content">
+            <div class="w-20 h-20 bg-primary/10 rounded-full flex items-center justify-center mx-auto mb-6">
+                <span class="material-symbols-outlined text-primary text-5xl">check_circle</span>
             </div>
-            <h3 class="text-headline-sm font-bold text-primary text-center mb-sm">Order Confirmed!</h3>
-            <p class="text-on-surface-variant text-center mb-lg">Thank you for your order. Our executive will contact you shortly to confirm the delivery details.</p>
-            <button id="close-modal-btn" type="button" class="w-full bg-primary text-on-primary py-sm rounded-xl font-bold hover:bg-primary-container transition-all active:scale-95">Done</button>
+            <h3 class="text-2xl font-bold text-primary text-center mb-3 font-display-lg">Order Confirmed!</h3>
+            <p class="text-on-surface-variant text-center mb-8 text-sm md:text-base">Thank you for your order. Our executive will contact you shortly to confirm the delivery details.</p>
+            <button id="close-modal-btn" type="button" class="w-full bg-primary text-on-primary py-4 rounded-xl font-bold hover:bg-primary-container transition-all active:scale-95 text-lg shadow-md hover:shadow-lg">Done</button>
         </div>
     </div>
 
+    <!-- Spinner Animation Keyframes -->
+    <style>
+        @keyframes spin { 100% { transform: rotate(360deg); } }
+    </style>
+
     <script>
+        // Mobile Menu Logic
+        const mobileMenuBtn = document.getElementById('mobile-menu-btn');
+        const mobileMenu = document.getElementById('mobile-menu');
+        const menuIcon = document.getElementById('menu-icon');
+        const mobileNavLinks = document.querySelectorAll('.mobile-nav-link');
+        let isMenuOpen = false;
+
+        function toggleMenu() {
+            isMenuOpen = !isMenuOpen;
+            if (isMenuOpen) {
+                mobileMenu.classList.remove('opacity-0', 'pointer-events-none', '-translate-y-2');
+                mobileMenu.classList.add('opacity-100', 'pointer-events-auto', 'translate-y-0');
+                menuIcon.innerText = 'close';
+            } else {
+                mobileMenu.classList.add('opacity-0', 'pointer-events-none', '-translate-y-2');
+                mobileMenu.classList.remove('opacity-100', 'pointer-events-auto', 'translate-y-0');
+                menuIcon.innerText = 'menu';
+            }
+        }
+
+        mobileMenuBtn.addEventListener('click', toggleMenu);
+        mobileNavLinks.forEach(link => {
+            link.addEventListener('click', () => {
+                if(isMenuOpen) toggleMenu();
+            });
+        });
+
         // Smooth scroll implementation
         document.querySelectorAll('a[href^="#"]').forEach(anchor => {
             anchor.addEventListener('click', function (e) {
                 e.preventDefault();
                 const targetId = this.getAttribute('href');
                 if(targetId !== '#') {
-                    document.querySelector(targetId).scrollIntoView({
-                        behavior: 'smooth'
-                    });
+                    const targetElement = document.querySelector(targetId);
+                    if(targetElement) {
+                        targetElement.scrollIntoView({
+                            behavior: 'smooth'
+                        });
+                    }
                 }
             });
         });
@@ -649,7 +735,7 @@
             observer.observe(section);
         });
 
-        // Active Navigation Scroll Spy
+        // Active Navigation Scroll Spy (Desktop)
         const sections = document.querySelectorAll('section[id]');
         const navLinks = document.querySelectorAll('#nav-menu .nav-link');
 
@@ -657,7 +743,7 @@
             let current = '';
             sections.forEach(section => {
                 const sectionTop = section.offsetTop;
-                if (scrollY >= sectionTop - 200) {
+                if (scrollY >= sectionTop - 250) {
                     current = section.getAttribute('id');
                 }
             });
@@ -677,29 +763,29 @@
         const btnPlus = document.getElementById('btn-plus');
         const qtyDisplay = document.getElementById('qty-display');
         const deliveryArea = document.getElementById('delivery-area');
-        const hiddenQuantity = document.getElementById('hidden-quantity'); // Added for form submission
+        const hiddenQuantity = document.getElementById('hidden-quantity');
         
         const displaySubtotal = document.getElementById('display-subtotal');
         const displayDelivery = document.getElementById('display-delivery');
         const displayTotal = document.getElementById('display-total');
         const orderSubmitBtn = document.getElementById('order-submit-btn');
+        const btnText = document.getElementById('btn-text');
 
         let quantity = 1;
         const PRICE_PER_PACK = 500;
 
         function updatePrice() {
             let subtotal = quantity * PRICE_PER_PACK;
-            // Get price from the selected option's data-price attribute
             let deliveryCharge = parseInt(deliveryArea.options[deliveryArea.selectedIndex].getAttribute('data-price'));
             let grandTotal = subtotal + deliveryCharge;
 
             qtyDisplay.innerText = `${quantity} Pack${quantity > 1 ? 's' : ''}`;
-            hiddenQuantity.value = quantity; // Update hidden input for Google Sheet
+            hiddenQuantity.value = quantity; 
             
             displaySubtotal.innerText = `৳${subtotal}`;
             displayDelivery.innerText = `৳${deliveryCharge}`;
             displayTotal.innerText = `৳${grandTotal}`;
-            orderSubmitBtn.innerText = `Confirm Order ৳${grandTotal}`;
+            btnText.innerText = `Confirm Order ৳${grandTotal}`;
         }
 
         btnMinus.addEventListener('click', () => {
@@ -724,46 +810,57 @@
         const successModal = document.getElementById('success-modal');
         const successModalContent = document.getElementById('success-modal-content');
         const closeModalBtn = document.getElementById('close-modal-btn');
+        const errorMsg = document.getElementById('form-error-msg');
+        const spinnerIcon = document.getElementById('spinner-icon');
         
-        // Your Google Apps Script Web App URL
+        // Google Apps Script Web App URL
         const scriptURL = 'https://script.google.com/macros/s/AKfycbz33_1SBtjrw2pF1RB7uqkqxv-yrMfsy1X7DsId4LL0eXiSLg7pDoycmJq9KP6NQM9r7g/exec';
 
         orderForm.addEventListener('submit', function(e) {
-            e.preventDefault(); // Prevent actual form submission reload
+            e.preventDefault(); 
+            
+            // Hide previous error message
+            errorMsg.classList.add('hidden');
             
             // Button loading state
-            const originalBtnText = orderSubmitBtn.innerText;
-            orderSubmitBtn.innerText = 'অর্ডার পাঠানো হচ্ছে...';
+            btnText.innerText = 'অর্ডার পাঠানো হচ্ছে...';
+            spinnerIcon.classList.remove('hidden');
             orderSubmitBtn.disabled = true;
+            orderSubmitBtn.classList.add('opacity-80', 'cursor-not-allowed');
 
-            // Collect form data
             const formData = new FormData(orderForm);
 
             // Send data to Google Sheet
             fetch(scriptURL, { method: 'POST', body: formData})
                 .then(response => {
+                    if(!response.ok) throw new Error("Network response was not ok");
+                    
                     // Show modal with animation
                     successModal.classList.remove('hidden');
-                    setTimeout(() => {
+                    // Small delay to allow display block to apply before animating opacity
+                    requestAnimationFrame(() => {
                         successModal.classList.remove('opacity-0');
                         successModalContent.classList.remove('scale-95');
                         successModalContent.classList.add('scale-100');
-                    }, 10);
+                    });
 
-                    // Reset the form fields after successful submission
+                    // Reset the form
                     orderForm.reset();
                     quantity = 1;
-                    deliveryArea.selectedIndex = 0; // reset to first option
+                    deliveryArea.selectedIndex = 0;
                     updatePrice();
                 })
                 .catch(error => {
                     console.error('Error!', error.message);
-                    alert('দুঃখিত, কোনো একটি সমস্যা হয়েছে। দয়া করে আবার চেষ্টা করুন।');
+                    // Custom Error Message without using JS Alert
+                    errorMsg.classList.remove('hidden');
                 })
                 .finally(() => {
                     // Restore button state
-                    orderSubmitBtn.innerText = originalBtnText;
+                    updatePrice(); // resets the text based on current quantity
+                    spinnerIcon.classList.add('hidden');
                     orderSubmitBtn.disabled = false;
+                    orderSubmitBtn.classList.remove('opacity-80', 'cursor-not-allowed');
                 });
         });
 
@@ -775,7 +872,7 @@
             
             setTimeout(() => {
                 successModal.classList.add('hidden');
-            }, 300); // match duration-300
+            }, 300);
         });
     </script>
 </body>
